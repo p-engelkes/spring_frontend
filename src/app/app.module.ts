@@ -2,11 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home.component';
 import { PhotoList } from './components/photo-list.component';
 import { SidePanel } from './components/side-panel.component';
+import { NavBar } from './components/navbar.component';
 
 import { PhotoService } from './services/photo.service';
 
@@ -15,12 +17,14 @@ import { PhotoService } from './services/photo.service';
     AppComponent,
     HomeComponent,
     PhotoList,
-    SidePanel
+    SidePanel,
+    NavBar
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
   providers: [PhotoService],
   bootstrap: [AppComponent]
