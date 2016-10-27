@@ -14,7 +14,6 @@ export class Register {
   constructor(private registerService: RegisterService) {}
 
   onSubmit() {
-    console.log("submit test");
     this.registerService.sendUser(this.newUser)
       .subscribe(
         data => {
