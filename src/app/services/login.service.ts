@@ -9,17 +9,17 @@ export class LoginService {
   constructor(private http: Http) {
   }
 
-  sendCredential(model) {
-    let tokenUrl = "http://localhost:8080/user/login";
-    let headers1 = new Headers({'Content-Type': 'application/json'});
-    return this.http.post(tokenUrl, JSON.stringify(model), {headers: headers1});
+  sendCredential(userName: string, password: string) {
+    let tokenUrl = "http://localhost:8080/oauth/token?grant_type=password&client_id=live-test&username=" + userName + "&password=" + password;
+    let headers = new Headers({'Authorization': 'Basic bGl2ZS10ZXN0OmFkbWlucGFzcw=='});
+    return this.http.get(tokenUrl, {headers: headers});
   }
 
   sendToken(token) {
     let tokenUrl2 = "http://localhost:8080/rest/user/users";
-    console.log("Bearer" + token);
+    console.log(token);
 
-    let getHeaders = new Headers({'Authorization': 'Bearer ' + token});
+    let getHeaders = new Headers({'Authorization': 'Bearer' + token});
 
     return this.http.get(tokenUrl2, {headers: getHeaders})
   }
