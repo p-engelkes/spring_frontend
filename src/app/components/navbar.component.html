@@ -1,24 +1,13 @@
-<div class="ui inverted fixed menu">
-  <div class="ui secondary pointing menu">
-    <a class="item" routerLink="/home" routerLinkActive="active">
-      <img src="resources/static/pic/logo.png" />
-    </a>
-    <a class="item" routerLink="/home" routerLinkActive="active">
-      <h2>Lagoon</h2>
-    </a>
-    <a class="item" routerLink="/home" routerLinkActive="active">
-      Home
-    </a>
-    <a class="item" routerLink="/my-album" routerLinkActive="active">
-      My Album
-    </a>
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo" routerLink="/home" routerLinkActive="active">Lagoon</a>
+    <ul id="nav-movile" class="right hide-on-med-and-down">
+      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li><a routerLink="/my-album" routerLinkActive="active">My Album</a></li>
+      <li *ngIf="!loginService.checkLogin()"><a routerLink="/register" routerLinkActive="active">Register</a></li>
+      <li *ngIf="!loginService.checkLogin()"><a routerLink="/login" routerLinkActive="active">
+        {{loginService.checkLogin() ? 'Logout' : 'Login'}}
+      </a></li>
+    </ul>
   </div>
-  <div class="right menu">
-    <a *ngIf="!loginService.checkLogin()" class="item" routerLink="/register" routerLinkActive="active">
-      Register
-    </a>
-    <a class="item" routerLink="/login" routerLinkActive="active" (click)="onClick()">
-      {{loginService.checkLogin()? 'Logout' : 'Login'}}
-    </a>
-  </div>
-</div>
+</nav>
