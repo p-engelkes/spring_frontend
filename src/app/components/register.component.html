@@ -1,37 +1,33 @@
 <div class="container">
-  <form *ngIf="!registered" class="ui form" (ngSubmit)="onSubmit()" #registerForm = "ngForm">
-    <h2 class="ui dividing header">Register User</h2>
-    <div class="field">
-      <label>* Name</label>
-      <div class="two fields">
-        <div class="field">
-          <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="newUser.firstName"
-                 ngControl="firstName" required>
-        </div>
-        <div class="field">
-          <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="newUser.lastName"
-                 ngControl="lastName" required>
-        </div>
+  <form *ngIf="!registered" class="col s12" (ngSubmit)="onSubmit()" #registerForm = "ngForm">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="firstName" type="text" class="validate" [(ngModel)]="newUser.firstName" ngControl="firstName" name="firstName">
+        <label for="firstName">First Name</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="lastName" type="text" class="validate" [(ngModel)]="newUser.lastName" ngControl="lastName" name="lastName">
+        <label for="lastName">Last Name</label>
       </div>
     </div>
-    <div class="field">
-      <label>* Username/Password</label>
-      <div class="three fields">
-        <div class="field">
-          <input type="text" name="userName" placeholder="User Name" [(ngModel)]="newUser.userName"
-                 ngControl="userName" required>
-        </div>
-        <div class="field">
-          <input type="password" name="password" placeholder="Password" [(ngModel)]="newUser.password"
-                 ngControl="password1" required>
-        </div>
-        <div class="field">
-          <input type="password" name="password" placeholder="Password Again" ngControl="password2" required>
-        </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="userName" type="text" class="validate" [(ngModel)]="newUser.userName" ngControl="userName" name="userName">
+        <label for="userName">User Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="password" type="password" class="validate" [(ngModel)]="newUser.password" ngControl="password" name="password">
+        <label for="password">Password</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="passwordConfirmation" type="password" class="validate" ngControl="password2">
+        <label for="passwordConfirmation">Password Confirmation</label>
       </div>
     </div>
 
-    <button type="submit" class="ui button" [disabled]="!registerForm.form.valid">Register</button>
+    <button type="submit" class="waves-effect waves-light btn" [disabled]="!registerForm.form.valid">Register</button>
   </form>
 
   <div *ngIf="registered">
