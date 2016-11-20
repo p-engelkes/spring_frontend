@@ -1,23 +1,23 @@
 <div class="container">
   <div class="row">
-    <form class="col s12" (ngSubmit)="onSubmit()" [hidden]="loginService.checkLogin()">
+    <form [formGroup]="complexForm" class="col s12" [hidden]="loginService.checkLogin()">
       <div class="row">
         <div class="input-field col s12">
-          <input id="username" type="text" class="validate" [(ngModel)]="model.username" ngControl="username" name="username">
+          <input id="username" type="text" name="username" [formControl]="complexForm.controls['userName']" class="validate">
           <label for="username">Username</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate" [(ngModel)]="model.password" ngControl="password" name="password">
+          <input id="password" type="password" name="password" [formControl]="complexForm.controls['password']" class="validate">
           <label for="password">Password</label>
         </div>
       </div>
 
-      <a type="submit" class="waves-effect waves-light btn">Submit</a>
+      <a type="submit" (click)="onSubmit(complexForm.value)" class="waves-effect waves-light btn">Submit</a>
     </form>
 
-    <div [hidden]="!loginService.checkLogin()">
+    <div [hidden]="loginService.checkLogin()">
       <h3>Logged in successfullly! </h3>
       <h2>Welcome back, {{currentUserName}}</h2>
     </div>

@@ -36,10 +36,8 @@ export class LoginService {
       localStorage.getItem("token") != null &&
       localStorage.getItem("token") != ''
     ) {
-      console.log("Check Login is True");
       return true;
     } else {
-      console.log("Check Login is False");
       return false;
     }
   }
