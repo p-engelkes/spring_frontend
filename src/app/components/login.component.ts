@@ -10,7 +10,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 export class Login {
   complexForm: FormGroup;
-  private model = {'username': '', 'password': ''};
   private currentUserName;
 
   constructor(private loginService: LoginService, formBuilder: FormBuilder) {
@@ -21,11 +20,18 @@ export class Login {
     })
   }
 
+  getUserNameError(): string {
+    return "A username is required."
+  }
+
+  getPasswordError(): string {
+    return "A password is required";
+  }
+
   onSubmit(value: any) {
-    console.log("Value: " + value);
-    console.log("UserName: " + value.userName);
-    console.log("Password: " + value.password);
-    // this.loginService.sendCredential(this.model.username, this.model.password).subscribe(
+    let userName = value.userName;
+    let password = value.password;
+    // this.loginService.sendCredential(userName, password).subscribe(
     //   data => {
     //     let responseBody = JSON.parse(JSON.stringify(data))._body;
     //     let response = JSON.parse(responseBody);
@@ -33,10 +39,8 @@ export class Login {
     //     localStorage.setItem("token", access_token);
     //     this.loginService.sendToken(localStorage.getItem("token")).subscribe(
     //       data => {
-    //         this.currentUserName = this.model.username;
-    //         localStorage.setItem("currentUserName", this.model.username);
-    //         this.model.username = '';
-    //         this.model.password = '';
+    //         this.currentUserName = userName
+    //         localStorage.setItem("currentUserName", userName);
     //       },
     //       error => console.log(error)
     //     )
