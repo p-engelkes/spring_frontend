@@ -31,6 +31,7 @@ export class Login {
   onSubmit(value: any) {
     let userName = value.userName;
     let password = value.password;
+    console.log(userName + " " + password);
     // this.loginService.sendCredential(userName, password).subscribe(
     //   data => {
     //     let responseBody = JSON.parse(JSON.stringify(data))._body;

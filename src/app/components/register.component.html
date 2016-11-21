@@ -1,33 +1,36 @@
 <div class="container">
-  <form *ngIf="!registered" class="col s12" (ngSubmit)="onSubmit()" #registerForm = "ngForm">
+  <form *ngIf="!registered" class="col s12" [formGroup]="registerForm">
     <div class="row">
       <div class="input-field col s6">
-        <input id="firstName" type="text" class="validate" [(ngModel)]="newUser.firstName" ngControl="firstName" name="firstName">
+        <input id="firstName" type="text" formControlName="firstName" class="validate">
         <label for="firstName">First Name</label>
       </div>
       <div class="input-field col s6">
-        <input id="lastName" type="text" class="validate" [(ngModel)]="newUser.lastName" ngControl="lastName" name="lastName">
+        <input id="lastName" type="text" formControlName="lastName" class="validate">
         <label for="lastName">Last Name</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input id="userName" type="text" class="validate" [(ngModel)]="newUser.userName" ngControl="userName" name="userName">
+        <input id="userName" type="text" class="validate" formControlName="userName">
         <label for="userName">User Name</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <input id="password" type="password" class="validate" [(ngModel)]="newUser.password" ngControl="password" name="password">
+        <input id="password" type="password" class="validate" formControlName="password">
         <label for="password">Password</label>
       </div>
       <div class="input-field col s6">
-        <input id="passwordConfirmation" type="password" class="validate" ngControl="password2">
+        <input id="passwordConfirmation" type="password" formControlName="passwordConfirmation" class="validate">
         <label for="passwordConfirmation">Password Confirmation</label>
       </div>
     </div>
 
-    <button type="submit" class="waves-effect waves-light btn" [disabled]="!registerForm.form.valid">Register</button>
+      <a type="submit" (click)="onSubmit(registerForm.value)" class="waves-effect waves-light btn"
+         [ngClass]="{'disabled':!registerForm.valid}">
+        Submit
+      </a>
   </form>
 
   <div *ngIf="registered">
