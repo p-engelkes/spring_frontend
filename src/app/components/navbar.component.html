@@ -5,7 +5,7 @@
       <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
       <li><a routerLink="/my-album" routerLinkActive="active">My Album</a></li>
       <li *ngIf="!loginService.checkLogin()"><a routerLink="/register" routerLinkActive="active">Register</a></li>
-      <li *ngIf="!loginService.checkLogin()"><a routerLink="/login" routerLinkActive="active">
+      <li><a routerLink="/login" routerLinkActive="active" (click)="onClick()">
         {{loginService.checkLogin() ? 'Logout' : 'Login'}}
       </a></li>
     </ul>

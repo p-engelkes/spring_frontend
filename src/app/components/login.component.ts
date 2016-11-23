@@ -31,22 +31,21 @@ export class Login {
   onSubmit(value: any) {
     let userName = value.userName;
     let password = value.password;
-    console.log(userName + " " + password);
-    // this.loginService.sendCredential(userName, password).subscribe(
-    //   data => {
-    //     let responseBody = JSON.parse(JSON.stringify(data))._body;
-    //     let response = JSON.parse(responseBody);
-    //     let access_token = response.access_token;
-    //     localStorage.setItem("token", access_token);
-    //     this.loginService.sendToken(localStorage.getItem("token")).subscribe(
-    //       data => {
-    //         this.currentUserName = userName
-    //         localStorage.setItem("currentUserName", userName);
-    //       },
-    //       error => console.log(error)
-    //     )
-    //   },
-    //   error => console.log(error)
-    // );
+    this.loginService.sendCredential(userName, password).subscribe(
+      data => {
+        let responseBody = JSON.parse(JSON.stringify(data))._body;
+        let response = JSON.parse(responseBody);
+        let access_token = response.access_token;
+        localStorage.setItem("token", access_token);
+        this.loginService.sendToken(localStorage.getItem("token")).subscribe(
+          data => {
+            this.currentUserName = userName
+            localStorage.setItem("currentUserName", userName);
+          },
+          error => console.log(error)
+        )
+      },
+      error => console.log(error)
+    );
   }
 }
