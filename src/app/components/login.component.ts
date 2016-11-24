@@ -2,6 +2,8 @@ import {Component} from "@angular/core";
 import {Observable} from 'rxjs/Observable';
 import {LoginService} from "../services/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {TeamService} from "../services/team.service";
+import {Team} from "../models/team";
 
 @Component({
   selector: 'login',
@@ -12,7 +14,9 @@ export class Login {
   complexForm: FormGroup;
   private currentUserName;
 
-  constructor(private loginService: LoginService, formBuilder: FormBuilder) {
+  constructor(private loginService: LoginService,
+              private teamService: TeamService,
+              formBuilder: FormBuilder) {
     this.currentUserName = localStorage.getItem("currentUserName");
     this.complexForm = formBuilder.group({
       'userName': [null, Validators.required],
@@ -39,8 +43,17 @@ export class Login {
         localStorage.setItem("token", access_token);
         this.loginService.sendToken(localStorage.getItem("token")).subscribe(
           data => {
-            this.currentUserName = userName
+            this.currentUserName = userName;
             localStorage.setItem("currentUserName", userName);
+          },
+          error => console.log(error)
+        );
+        this.teamService.getTeams().subscribe(
+          data => {
+            let teamResponse = JSON.parse(JSON.stringify(data))._body;
+            let teamJson = JSON.parse(teamResponse);
+            let team = new Team(teamJson);
+            console.log(team);
           },
           error => console.log(error)
         )

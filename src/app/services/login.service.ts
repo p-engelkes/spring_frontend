@@ -24,7 +24,6 @@ export class LoginService {
   logout() {
     localStorage.setItem("token", "");
     localStorage.setItem("currentUserName", '');
-    alert("You just logged out.");
   }
 
   checkLogin() {

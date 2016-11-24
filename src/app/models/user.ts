@@ -1,5 +1,3 @@
-import { Photo } from './photo';
-
 export class User {
   public userId: number;
   public firstName: string;
@@ -7,6 +5,4 @@ export class User {
   public userName: string;
   public password: string;
   public created: Date;
-  public photoList: Photo[];
-  public likedPhotoList: Photo[];
 }

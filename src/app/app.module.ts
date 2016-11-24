@@ -6,21 +6,19 @@ import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home.component';
-import { PhotoList } from './components/photo-list.component';
 import { SidePanel } from './components/side-panel.component';
 import { NavBar } from './components/navbar.component';
 import { Register } from './components/register.component';
 
-import { PhotoService } from './services/photo.service';
 import { RegisterService } from './services/register.service';
 import {Login} from "./components/login.component";
 import {LoginService} from "./services/login.service";
+import {TeamService} from "./services/team.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PhotoList,
     SidePanel,
     NavBar,
     Register,
@@ -34,9 +32,9 @@ import {LoginService} from "./services/login.service";
     routing
   ],
   providers: [
-    PhotoService,
     RegisterService,
-    LoginService
+    LoginService,
+    TeamService
   ],
   bootstrap: [AppComponent]
 })
