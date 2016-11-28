@@ -3,13 +3,22 @@ export class Team {
   public teamName: string;
   public trainings: Training[] = [];
 
-  constructor(json) {
+  create(teamName: string, trainings: Training[]) {
+    this.teamName = teamName;
+    this.trainings = trainings;
+
+    return this;
+  }
+
+  deserialize(json) {
     this.id = json.id;
     this.teamName = json.teamName;
     for (let trainingTime in json.trainingTimes)
     {
       this.trainings.push(new Training(trainingTime, json.trainingTimes[trainingTime]));
     }
+
+    return this;
   }
 }
 

@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {LoginService} from "../services/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TeamService} from "../services/team.service";
-import {Team} from "../models/team";
+import {Team, Training} from "../models/team";
 
 @Component({
   selector: 'login',
@@ -48,15 +48,6 @@ export class Login {
           },
           error => console.log(error)
         );
-        this.teamService.getTeams().subscribe(
-          data => {
-            let teamResponse = JSON.parse(JSON.stringify(data))._body;
-            let teamJson = JSON.parse(teamResponse);
-            let team = new Team(teamJson);
-            console.log(team);
-          },
-          error => console.log(error)
-        )
       },
       error => console.log(error)
     );
