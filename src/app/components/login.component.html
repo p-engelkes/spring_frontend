@@ -3,7 +3,7 @@
     <form [formGroup]="complexForm" class="col s12" [hidden]="loginService.checkLogin()">
       <div class="row">
         <div class="input-field col s12">
-          <input id="username" type="text" formControlName="userName"
+          <input id="username" type="text" formControlName="userName" placeholder="Benutzername"
                  class="validate"
                  [ngClass]="{'invalid':complexForm.controls['userName'].hasError('required') && complexForm.controls['userName'].touched, 'valid':complexForm.controls['userName'].valid && complexForm.controls['userName'].touched}"
           >
@@ -12,7 +12,7 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" formControlName="password"
+          <input id="password" type="password" formControlName="password" placeholder="Passwort"
                  class="validate"
                  [ngClass]="{'invalid':complexForm.controls['password'].hasError('required') && complexForm.controls['password'].touched, 'valid':complexForm.controls['password'].valid && complexForm.controls['password'].touched}"
           >

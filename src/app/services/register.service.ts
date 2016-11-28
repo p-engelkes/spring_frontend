@@ -10,6 +10,7 @@ export class RegisterService {
   sendUser(user:User) {
     let url = "http://localhost:8080/user/register";
     let headers1 = new Headers({'Content-Type': 'application/json'});
+    console.log(JSON.stringify(user));
     return this.http.post(url, JSON.stringify(user), {headers: headers1});
   }
 }

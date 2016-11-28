@@ -16,11 +16,11 @@ export class Register {
 
   constructor(private registerService: RegisterService, formBuilder: FormBuilder) {
     this.registerForm = formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      userName: ['', Validators.required],
-      password: ['', Validators.required],
-      passwordConfirmation: ['', Validators.required]
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
+      userName: [null, Validators.required],
+      password: [null, Validators.required],
+      passwordConfirmation: [null, Validators.required]
     }, {validator: matchingPasswords('password', 'passwordConfirmation')})
   }
 
@@ -51,15 +51,31 @@ export class Register {
     return error;
   }
 
-  onSubmit() {
-    console.log(this.registerForm.hasError('mismatchedPasswords'));
-    // this.registerService.sendUser(this.newUser)
-    //   .subscribe(
-    //     data => {
-    //       this.registered = true;
-    //       this.newUser = new User;
-    //     },
-    //     error => console.log(error)
-    //   );
+  onSubmit(value: any) {
+    let firstName = value.firstName;
+    let lastName = value.lastName;
+    let userName = value.userName;
+    let password = value.password;
+    let user = new User().create(firstName, lastName, userName, password);
+    this.registerService.sendUser(user)
+      .subscribe(
+        data => {
+          this.registered = true;
+          this.newUser = new User;
+        },
+        error => {
+          console.log(error)
+          let responseBody = JSON.parse(JSON.stringify(error))._body;
+          let response = JSON.parse(responseBody);
+          let status = response.status;
+          if (status === "BAD_REQUEST") {
+            let message = response.message;
+            swal({
+              title: message,
+              type: "error"
+            });
+          }
+        }
+      );
   }
 }

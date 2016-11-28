@@ -9,7 +9,6 @@ import {Team, Training} from "../models/team";
   selector: 'login',
   templateUrl: './login.component.html'
 })
-
 export class Login {
   complexForm: FormGroup;
   private currentUserName;
